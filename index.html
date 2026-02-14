@@ -102,12 +102,10 @@ function unlock(){
 
     if(input === correctPassword){
 
-        // 🎵 PLAY MUSIC (User interaction allows it)
         const music = document.getElementById("bgMusic");
         music.volume = 0.5;
         music.play();
 
-        // Change only #app content (NOT whole body)
         document.getElementById("app").innerHTML = `
             <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;background:linear-gradient(135deg,#ff758c,#ff7eb3);color:white;text-align:center;">
                 <h1>Wait... 🥺</h1>
@@ -118,27 +116,14 @@ function unlock(){
             </div>
         `;
 
-        // Open PDF after 3 seconds
-        // Open PDF after 3 seconds
-setTimeout(()=>{
-    window.open("loveletter.pdf","_blank");
-},3000);
-
-    `;
-},3000);
-
-
-        // Final message after 8 seconds
+        // ✅ Show PDF inside same page (music continues)
         setTimeout(()=>{
             document.getElementById("app").innerHTML = `
-                <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;background:#fff0f5;text-align:center;">
-                    <h1>So… 😏</h1>
-                    <h2>After reading that...</h2>
-                    <h2>You're stuck with me forever 💍😂</h2>
-                    <p>Thank you for being my favorite notification 💖</p>
-                </div>
+                <iframe src="loveletter.pdf" 
+                        style="width:100%; height:100vh; border:none;">
+                </iframe>
             `;
-        },8000);
+        },3000);
 
     } else {
         alert("Wrong password 😭 Hint: our special word.");
