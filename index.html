@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bio Loves You 💖</title>
+
+<style>
+body {
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Caveat, Arial;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    text-align:center;
+    overflow:hidden;
+}
+
+.container {
+    background:#F9D3E0;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    width:90%;
+    max-width:400px;
+    position:relative;
+    z-index:2;
+}
+
+img {
+    width:100%;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+button {
+    padding:10px 25px;
+    border:none;
+    border-radius:20px;
+    background:white;
+    color:black;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover {
+    transform:scale(1.1);
+}
+
+input {
+    padding:8px;
+    border-radius:15px;
+    border:1px solid #ccc;
+    width:70%;
+    text-align:center;
+    margin-top:10px;
+}
+
+.heart {
+    position:absolute;
+    color:#ff4b5c;
+    animation:float 5s linear infinite;
+}
+
+@keyframes float {
+    0% {transform:translateY(100vh);opacity:0;}
+    50%{opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 AUDIO OUTSIDE MAIN CONTENT (WILL NOT BE DELETED) -->
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- EVERYTHING THAT CHANGES IS INSIDE THIS -->
+<div id="app" class="container">
+    <img src="photo.jpeg" alt="Us together">
+    <h2>Hi Love 😌</h2>
+    <p>I made this instead of buying flowers...</p>
+    <p>Because websites last longer 🌹😂</p>
+
+    <p>Enter our secret word to read something special 💌</p>
+
+    <input type="password" id="password" placeholder="Secret word">
+    <br><br>
+    <button onclick="unlock()">Unlock 💖</button>
+</div>
+
+<script>
+const correctPassword = "forever";
+
+function unlock(){
+    const input = document.getElementById("password").value;
+
+    if(input === correctPassword){
+
+        // 🎵 PLAY MUSIC (User interaction allows it)
+        const music = document.getElementById("bgMusic");
+        music.volume = 0.5;
+        music.play();
+
+        // Change only #app content (NOT whole body)
+        document.getElementById("app").innerHTML = `
+            <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;background:linear-gradient(135deg,#ff758c,#ff7eb3);color:white;text-align:center;">
+                <h1>Wait... 🥺</h1>
+                <p>Before you read this...</p>
+                <p>I just want you to know...</p>
+                <h2>I love you more than debugging errors 💻😂</h2>
+                <p>Opening my heart now 💖</p>
+            </div>
+        `;
+
+        // Open PDF after 3 seconds
+        // Open PDF after 3 seconds
+setTimeout(()=>{
+    window.open("loveletter.pdf","_blank");
+},3000);
+
+    `;
+},3000);
+
+
+        // Final message after 8 seconds
+        setTimeout(()=>{
+            document.getElementById("app").innerHTML = `
+                <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;background:#fff0f5;text-align:center;">
+                    <h1>So… 😏</h1>
+                    <h2>After reading that...</h2>
+                    <h2>You're stuck with me forever 💍😂</h2>
+                    <p>Thank you for being my favorite notification 💖</p>
+                </div>
+            `;
+        },8000);
+
+    } else {
+        alert("Wrong password 😭 Hint: our special word.");
+    }
+}
+
+// Floating hearts
+setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+10)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+},500);
+
+</script>
+
+</body>
+</html>
